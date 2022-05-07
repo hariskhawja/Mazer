@@ -9,46 +9,28 @@ screen = pygame.display.set_mode((1200, 600), pygame.RESIZABLE)
 FPS = 60
 fpsClock = pygame.time.Clock()
 
+player = playerControl.Player((100, 0, 100), 10, 10, 50, 10)
+
 quitVar = True
-
-playerStats = [250, 250]
-# player = playerControl.Player(255, 255)
-
 
 while quitVar:
     screen.fill([0, 100, 0])
-    player = pygame.draw.rect(screen, (255, 0, 0), (playerStats[0], playerStats[1], 100, 100))
+
+    player.playerDraw(screen)
+
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_UP]:
-        playerStats[1] -= 10
+    if keys[pygame.K_UP]: player.moveNorth() 
 
-    if keys[pygame.K_DOWN]:
-        playerStats[1] += 10
+    if keys[pygame.K_DOWN]: player.moveSouth()
+
+    if keys[pygame.K_RIGHT]: player.moveEast()
+
+    if keys[pygame.K_LEFT]: player.moveWest()
     
-    if keys[pygame.K_RIGHT]:
-        playerStats[0] += 10
-    
-    if keys[pygame.K_LEFT]:
-        playerStats[0] -= 10
-
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quitVar = False
-        '''
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                playerStats[1] += 1
-            
-            if event.key == pygame.K_DOWN:
-                playerStats[1] -= 1
-
-            if event.key == pygame.K_RIGHT:
-                playerStats[0] += 1
-            
-            if event.key == pygame.K_LEFT:
-                playerStats[0] -= 1'''
 
     pygame.display.update()
     fpsClock.tick(FPS)
