@@ -10,6 +10,7 @@ FPS = 60
 fpsClock = pygame.time.Clock()
 
 player = playerControl.Player((100, 0, 100), 10, 10, 50, 10)
+obstacle1 = obstacleControl.Obstacle('blue', 300, 100, 50, True)
 
 quitVar = True
 
@@ -17,6 +18,7 @@ while quitVar:
     screen.fill([0, 100, 0])
 
     player.playerDraw(screen)
+    obstacle1.obstacleDraw(screen)
 
     keys = pygame.key.get_pressed()
 
