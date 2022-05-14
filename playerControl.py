@@ -9,7 +9,7 @@ class Player:
         self.speed = speed
 
     def playerDraw(self, screen): 
-        pygame.draw.rect(screen, self.colour, (self.x, self.y, self.length, self.length))
+        self.playerRect = pygame.draw.rect(screen, self.colour, (self.x, self.y, self.length, self.length))
         self.w, self.h = pygame.display.get_surface().get_size()
 
     def moveNorth(self):

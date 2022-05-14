@@ -1,13 +1,12 @@
 import pygame
 
 class Obstacle:
-    def __init__(self, colour, x, y, length, extender):
+    def __init__(self, colour, x, y, xLen, yLen):
         self.colour = colour
         self.x = x
         self.y = y
-        self.length = length
-        self.extender = extender
+        self.xLen = xLen
+        self.yLen = yLen
 
     def obstacleDraw(self, screen):
-        if self.extender:
-            pygame.draw.rect(screen, self.colour, (self.x, self.y, self.length, 10))
+        self.obstacleRect = pygame.draw.rect(screen, self.colour, (self.x, self.y, self.xLen, self.yLen))
