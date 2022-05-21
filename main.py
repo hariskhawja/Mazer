@@ -9,51 +9,40 @@ screen = pygame.display.set_mode((1200, 600), pygame.RESIZABLE)
 FPS = 60
 fpsClock = pygame.time.Clock()
 
-player = playerControl.Player((100, 0, 100), 10, 10, 50, 5)
-obstacle1 = obstacleControl.Obstacle('blue', 300, 500, 100, 25)
-nav = [True, True, True, True]
+player = playerControl.Player('white', [10, 10], 20, 2)
+obstacle1 = obstacleControl.Obstacle('white', 0, 40, 500, 10)
+obstacle2 = obstacleControl.Obstacle('white', 500, 40, 10, 100)
+
+walls = [obstacle1, obstacle2]
+
+playerDelay = 0
 
 quitVar = True
 
 while quitVar:
-    screen.fill([0, 100, 0])
+    screen.fill('black')
 
     player.playerDraw(screen)
-    obstacle1.obstacleDraw(screen)
+    
+    for wall in walls:
+        wall.obstacleDraw(screen)
+        if player.playerRect.colliderect(wall.obstacleRect):
+            playerDelay = 25
+            player.pos = [10, 10]
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_UP] and nav[0]: 
-        if player.playerRect.colliderect(obstacle1.obstacleRect):
-            nav[0] = False
-        
-        else:
-            player.moveNorth()
-            nav[1] = True
+    if playerDelay <= 0:
+        if keys[pygame.K_UP]: player.moveNorth()
 
-    if keys[pygame.K_DOWN] and nav[1]: 
-        if player.playerRect.colliderect(obstacle1.obstacleRect):
-            nav[1] = False
-        
-        else:
-            player.moveSouth()
-            nav[0] = True
+        if keys[pygame.K_DOWN]: player.moveSouth()
 
-    if keys[pygame.K_RIGHT] and nav[2]: 
-        if player.playerRect.colliderect(obstacle1.obstacleRect):
-            nav[2] = False
+        if keys[pygame.K_RIGHT]: player.moveEast()
 
-        else:
-            player.moveEast()
-            nav[3] = True
+        if keys[pygame.K_LEFT]: player.moveWest()
 
-    if keys[pygame.K_LEFT] and nav[3]: 
-        if player.playerRect.colliderect(obstacle1.obstacleRect):
-            nav[3] = False
-        
-        else:
-            player.moveWest()
-            nav[2] = True
+    else:
+        playerDelay -= 1
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

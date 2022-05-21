@@ -1,25 +1,24 @@
 import pygame
 
 class Player:
-    def __init__(self, colour, x, y, length, speed):
+    def __init__(self, colour, pos, length, speed):
         self.colour = colour
-        self.x = x
-        self.y = y
+        self.pos = pos
         self.length = length
         self.speed = speed
 
     def playerDraw(self, screen): 
-        self.playerRect = pygame.draw.rect(screen, self.colour, (self.x, self.y, self.length, self.length))
+        self.playerRect = pygame.draw.rect(screen, self.colour, (self.pos[0], self.pos[1], self.length, self.length))
         self.w, self.h = pygame.display.get_surface().get_size()
 
     def moveNorth(self):
-        if self.y > 0: self.y -= self.speed
+        if self.pos[1] > 0: self.pos[1] -= self.speed
     
     def moveSouth(self):
-        if self.y < self.h - self.length: self.y += self.speed
+        if self.pos[1] < self.h - self.length: self.pos[1] += self.speed
 
     def moveEast(self):
-        if self.x < self.w - self.length: self.x += self.speed
+        if self.pos[0] < self.w - self.length: self.pos[0] += self.speed
     
     def moveWest(self):
-        if self.x > 0: self.x -= self.speed
+        if self.pos[0] > 0: self.pos[0] -= self.speed
