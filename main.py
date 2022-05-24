@@ -9,11 +9,13 @@ screen = pygame.display.set_mode((1200, 600), pygame.RESIZABLE)
 FPS = 60
 fpsClock = pygame.time.Clock()
 
-player = playerControl.Player('white', [10, 10], 20, 2)
-obstacle1 = obstacleControl.Obstacle('white', 0, 40, 500, 10)
-obstacle2 = obstacleControl.Obstacle('white', 500, 40, 10, 100)
+player = playerControl.Player('white', [10, 10], 20, 5)
 
-walls = [obstacle1, obstacle2]
+# plan out the actual outline of the maze, then create the walls for the maze
+# consider any other types of objects - a moving wall, keys, items
+
+walls = [
+]
 
 playerDelay = 0
 
