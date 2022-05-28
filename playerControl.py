@@ -6,6 +6,7 @@ class Player:
         self.pos = pos
         self.length = length
         self.speed = speed
+        self.playerDelay = 0
 
     def playerDraw(self, screen): 
         self.playerRect = pygame.draw.rect(screen, self.colour, (self.pos[0], self.pos[1], self.length, self.length))
