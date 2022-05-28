@@ -1,6 +1,6 @@
 import pygame
 import playerControl
-import obstacleControl
+import obstacleControl 
 
 pygame.init()
 pygame.display.set_caption("Mazer")
