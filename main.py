@@ -1,6 +1,5 @@
 import pygame
 import playerControl
-import obstacleControl 
 import obstacleInitialise
 
 pygame.init()
