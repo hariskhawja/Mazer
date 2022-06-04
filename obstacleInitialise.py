@@ -1,23 +1,21 @@
 import obstacleControl
 
-# vertical obstacles
-vertObstacle1 = obstacleControl.Obstacle('white', 40, 0, 10, 250)
-vertObstacle2 = obstacleControl.Obstacle('white', 40, 290, 10, 280)
+obstaclesFile = open("obstacles.txt", "r")
 
-# vertical moving obstacles
-vertMovObst1 = obstacleControl.VerticalMovingObstacle('white', 80, -100, 10, 300, 0, 2)
-vertMovObst2 = obstacleControl.VerticalMovingObstacle('white', 80, 240, 10, 450, 340, 2)
+obstaclesList = []
 
-# horizontal obstacles
-#horzObstacle1 = obstacleControl.Obstacle('white',)
+while True:
+    currentLine = obstaclesFile.readline().split()
 
-# horizontal moving obstacles
-horzMovObst1 = obstacleControl.HorizontalMovingObstacle('white', 200, 40, 100, 10, 400, 2)
+    if not currentLine:
+        obstaclesFile.close()
+        break
 
-obstaclesList = [
-    vertObstacle1,
-    vertObstacle2,
-    vertMovObst1,
-    vertMovObst2,
-    horzMovObst1
-]
+    if currentLine[0] == "VERTICAL":
+        obstaclesList.append(obstacleControl.VerticalMovingObstacle(currentLine[1], int(currentLine[2]), int(currentLine[3]), int(currentLine[4]), int(currentLine[5]), int(currentLine[6]), int(currentLine[7])))
+
+    elif currentLine[0] == "HORIZONTAL":
+        obstaclesList.append(obstacleControl.HorizontalMovingObstacle(currentLine[1], int(currentLine[2]), int(currentLine[3]), int(currentLine[4]), int(currentLine[5]), int(currentLine[6]), int(currentLine[7])))
+
+    else:
+        obstaclesList.append(obstacleControl.Obstacle(currentLine[1], int(currentLine[2]), int(currentLine[3]), int(currentLine[4]), int(currentLine[5])))
