@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((1200, 600), pygame.RESIZABLE)
 FPS = 60
 fpsClock = pygame.time.Clock()
 
-player = playerControl.Player('white', [10, 10], 20, 5)
+player = playerControl.Player('white', [10, 10], 20, 4)
 
 quitVar = True
 
